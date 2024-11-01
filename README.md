@@ -1,163 +1,80 @@
-
-# App de Controle de Gastos Mensais
+# CRUD de Despesas
 
 ## Descrição
 
-Este projeto é uma aplicação acadêmica desenvolvida para testar habilidades em Flutter. O tema foi pré-definido para simular um ambiente de trabalho real, focando no desenvolvimento de um aplicativo de controle de gastos mensais. A aplicação permite ao usuário registrar suas despesas, categorizá-las e visualizar relatórios.
+Este é um aplicativo de controle de despesas pessoais desenvolvido com **Flutter** e **Firebase**. O projeto utiliza a arquitetura **MVVM** para organização de código e gerenciamento de dados, oferecendo funcionalidades para **adicionar**, **visualizar**, **editar** e **excluir** despesas, além de relatórios mensais detalhados.
 
-## Funcionalidades
+---
 
-- Registro de despesas diárias com categorização.
-- Relatórios visuais por categoria de gasto.
-- Navegação simples entre telas de introdução, login, cadastro, controle de perfil, relatórios e configurações.
-- Interface intuitiva para adicionar, editar e excluir despesas.
+## 📑 Estrutura de pastas
 
-## Requisitos de Sistema
-
-- **Flutter SDK**: >= 3.5.3
-- **Dart SDK**
-- Android Studio para desenvolvimento e execução
-- Git para controle de versão
-
-### Dependências
-
-As principais dependências utilizadas no projeto são:
-
-```yaml
-dependencies:
-  flutter:
-    sdk: flutter
-  cupertino_icons: ^1.0.8
-  flutter_widget_from_html: ^0.15.2
-  diacritic: ^0.1.3
+```plaintext
+lib/
+├── views/
+│   ├── adicionar_despesa.dart
+│   ├── relatorio_despesas.dart
+│   └── home.dart
+├── models/
+│   └── despesa.dart
+├── viewmodels/
+│   └── despesa_viewmodel.dart
+└── main.dart
 ```
 
-Além disso, o projeto utiliza a família de fontes "Satoshi" customizada e ícones localizados na pasta `assets/img/`.
+---
 
-## Protótipo no Figma
+## 🔧 Funcionalidades
 
-O design e a estruturação da interface foram planejados no Figma. Você pode visualizar o protótipo acessando o seguinte link:
+- **Adicionar despesa**: o usuário pode adicionar novas despesas, especificando título, valor, categoria e se há renovação automática;
+- **Visualizar relatório**: exibe todas as despesas do mês corrente em ordem decrescente de data;
+- **Editar e excluir despesa**: permite a edição ou exclusão das despesas diretamente no Firebase,
+- **Cálculo de total mensal**: mostra o total de despesas acumulado no mês atual.
 
-[Protótipo no Figma](https://www.figma.com/design/X2Ui5T9GUjMXExOc6XHjum/App---Fintech?node-id=0-1&t=BzDxUVpY5TRAKeJU-1)
+---
 
-## Paleta de Cores
+## 📊 Regras de negócio
 
-A paleta de cores pré-definida para o projeto inclui as seguintes cores, das quais apenas as 3 primeiras (conforme o mínimo exigido) foram selecionadas:
+- As despesas devem possuir um título, valor, categoria e data;
+- O campo valor deve ser numérico e maior que zero;
+- O total do mês é calculado somando todas as despesas do mês atual;
+- Apenas as despesas do mês atual são exibidas no relatório.
 
-![Paleta de Cores](./screenshots/Paleta.png)
+---
 
-- **#9C8680**
-- **#EB5E7F**
-- **#F98F6F**
-- Além dessas três, foram utilizados tons de preto/cinza para harmonizar a estilização da aplicação.
+## ⚙️ Tecnologias utilizadas
 
-## Printscreens do Aplicativo
+- **Flutter**: Framework para desenvolvimento multiplataforma;
+- **Firebase Firestore**: banco de dados NoSQL para armazenamento de despesas;
+- **Arquitetura MVVM**: separação entre camada de apresentação e camada de dados.
 
-Aqui estão alguns printscreens das telas do aplicativo:
+---
 
-1. **Tela de Introdução**
-
-![Tela de Introdução](./screenshots/1-intro.png)
-
-2. **Tela de Registro**
-
-![Tela de Registro](./screenshots/2-registro.png)
-
-3. **Tela de Verificação de E-mail**
-
-![Tela de Verificação](./screenshots/3-verificacao.png)
-
-4. **Tela de Login**
-
-![Tela de Login](./screenshots/4-login.png)
-
-5. **Tela de Redefinir Senha (E-mail)**
-
-![Tela de Redefinir Senha (E-mail)](./screenshots/5-email.png)
-
-6. **Tela de Redefinir Senha (Confirmação)**
-
-![Tela de Redefinir Senha (Confirmação)](./screenshots/6-redefinir.png)
-
-7. **Tela de Configurações (Categorias)**
-
-![Tela de Configurações (Categorias)](./screenshots/7-configuracoes.png)
-
-8. **Tela de Configurações (Moeda)**
-
-![Tela de Configurações (Moeda)](./screenshots/8-configuracoes2.png)
-
-9. **Tela de Perfil**
-
-![Tela de Perfil](./screenshots/9-perfil.png)
-
-10. **Redefinir Senha no Perfil**
-
-![Redefinir Senha no Perfil](./screenshots/10-perfil2.png)
-
-11. **Selecionar Início do Período Mensal no Perfil**
-
-![Selecionar Início do Período Mensal](./screenshots/11-perfil3.png)
-
-12. **Relatório de Despesas por Categoria**
-
-![Relatório de Despesas](./screenshots/12-relatorio.png)
-
-13. **Adicionar Nova Despesa**
-
-![Adicionar Nova Despesa](./screenshots/13-adicionar.png)
-
-14. **Despesas por Categoria (Assinaturas)**
-
-![Despesas por Categoria (Assinaturas)](./screenshots/14-categoria.png)
-
-15. **Editar Despesa por Categoria (Assinaturas)**
-
-![Editar Despesa por Categoria](./screenshots/15-categoria2.png)
-
-## Instalação
+## 🚀 Instalação
 
 Para instalar o projeto localmente, siga os passos abaixo:
 
 1. Clone o repositório:
    ```bash
-   git clone <URL do repositório>
+   git clone https://github.com/bredlxy/CRUDespesas.git
+   cd CRUDespesas
    ```
-2. Acesse a pasta do projeto:
-   ```bash
-   cd crud_despesas
-   ```
-3. Instale as dependências:
+2. Instale as dependências do Flutter:
    ```bash
    flutter pub get
    ```
+3. Configure o Firebase para Android, iOS ou Web conforme as instruções no site oficial.
 
-## Execução do Projeto
+4. Execute o projeto:
+   ```bash
+   flutter run
+   ```
 
-Após instalar as dependências, você pode executar o projeto com o seguinte comando no Android Studio ou diretamente no terminal:
+---
 
-```bash
-flutter run
-```
+## 📝 Documentação
 
-## Navegação entre Telas
+A documentação completa do projeto está disponível na pasta docs, incluindo o relatório detalhado, o arquivo de instruções do projeto e um vídeo de demonstração.
 
-O aplicativo é estruturado para navegar de maneira fluida entre várias telas, incluindo:
-
-- **Tela de Introdução**: Uma tela inicial com imagem de fundo e botão para começar.
-- **Tela de Login**: Permite que o usuário entre na aplicação com seu e-mail.
-- **Tela de Registro**: Onde novos usuários podem criar uma conta.
-- **Tela de Perfil**: Para visualizar e editar informações do usuário.
-- **Tela de Relatórios**: Exibe relatórios detalhados dos gastos por categorias como alimentação, moradia, etc.
-- **Tela de Configurações**: Onde o usuário pode ajustar suas preferências no aplicativo.
-- **Tela de Adicionar Despesa**: Permite ao usuário adicionar uma nova despesa com detalhes como valor e categoria.
-
-## Tecnologias Utilizadas
-
-- **Flutter**: Framework para o desenvolvimento da interface do usuário.
-- **Dart**: Linguagem de programação usada no desenvolvimento do aplicativo.
-
-## Autores
+---
 
 - [Bredley Bauer](https://github.com/bredlxy)
-- [Gabriel Coelho](https://github.com/coelhom12)
